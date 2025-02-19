@@ -11,6 +11,8 @@ from mcp.types import (
     INTERNAL_ERROR,
     CallToolRequestParams,
     ErrorData,
+    ListResourcesRequest,
+    ListResourceTemplatesRequest,
     ListToolsRequest,
     TextContent,
 )
@@ -24,6 +26,18 @@ logger = logging.getLogger("mcp_github")
 
 
 # Set up request handlers
+@server.list_resources()
+async def list_resources():
+    """List available resources (none for this server)."""
+    return []
+
+
+@server.list_resource_templates()
+async def list_resource_templates():
+    """List available resource templates (none for this server)."""
+    return []
+
+
 @server.list_tools()
 async def list_tools() -> list[types.Tool]:
     return [

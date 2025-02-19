@@ -46,7 +46,7 @@ def format_error(error: GitHubError) -> Dict[str, Any]:
     }
 
 
-def get_issues(arguments: Dict[str, Any]) -> Dict[str, Any]:
+async def get_issues(arguments: Dict[str, Any]) -> Dict[str, Any]:
     """MCP tool implementation for getting GitHub issues.
 
     Args:
@@ -76,7 +76,7 @@ def get_issues(arguments: Dict[str, Any]) -> Dict[str, Any]:
         return format_error(e)
 
 
-def create_issue(arguments: Dict[str, Any]) -> Dict[str, Any]:
+async def create_issue(arguments: Dict[str, Any]) -> Dict[str, Any]:
     """MCP tool implementation for creating GitHub issues.
 
     Args:

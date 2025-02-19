@@ -1,1 +1,5 @@
-poetry
+PyGithub>=2.6.0
+mcp>=1.2.1
+pytest>=7.4.0
+black>=23.7.0
+mypy>=1.5.1

@@ -17,9 +17,12 @@ git clone https://github.com/timbuchinger/mcp-github.git
 cd mcp-github
 ```
 
-2. Install dependencies with Poetry:
+2. Install dependencies with uv:
 ```bash
-poetry install
+pip install uv
+uv venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+uv pip install -r requirements.txt
 ```
 
 3. Copy the environment template and configure your GitHub token:
@@ -41,7 +44,7 @@ To create a GitHub Personal Access Token:
 
 Run the MCP server:
 ```bash
-poetry run python -m mcp_github.server
+python -m src.mcp_github.server
 ```
 
 The server will start and expose two tools to Cline:
@@ -76,17 +79,17 @@ Error responses include descriptive messages to help troubleshoot issues.
 
 ## Development
 
-The project uses Poetry for dependency management. To set up a development environment:
+The project uses uv for dependency management. To set up a development environment:
 
 ```bash
-# Install dev dependencies
-poetry install
+# Install all dependencies (including dev dependencies)
+uv pip install -r requirements.txt
 
 # Run tests
-poetry run pytest
+pytest
 
 # Format code
-poetry run black .
+black .
 
 # Type checking
-poetry run mypy .
+mypy .

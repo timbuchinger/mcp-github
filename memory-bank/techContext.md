@@ -20,7 +20,7 @@
    - Rate limit handling
 
 3. **Development Tools**
-   - Poetry (dependency management)
+   - uv (dependency management)
    - Black (code formatting)
    - MyPy (static type checking)
    - Pytest (testing framework)
@@ -92,20 +92,26 @@ CACHE_TTL=            # Cache time-to-live (optional)
 
 ### Development Configuration
 ```toml
-[tool.poetry]
+[project]
 name = "mcp-github"
 version = "0.1.0"
 description = "GitHub MCP server for Cline"
+requires-python = ">=3.10"
+dependencies = [
+    "PyGithub>=2.6.0",
+    "mcp>=1.2.1"
+]
 
-[tool.poetry.dependencies]
-python = "^3.9"
-PyGithub = "^2.1.1"
-modelcontextprotocol = "^0.1.0"
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "black>=23.7.0",
+    "mypy>=1.5.1"
+]
 
-[tool.poetry.dev-dependencies]
-pytest = "^7.4.0"
-black = "^23.7.0"
-mypy = "^1.5.1"
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 ```
 
 ## Testing Strategy
