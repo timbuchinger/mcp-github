@@ -2,7 +2,7 @@
 
 import logging
 import sys
-from typing import Dict
+from typing import Any, Awaitable, Callable, Dict
 
 import mcp.types as types
 from mcp.server import Server
@@ -15,6 +15,7 @@ from mcp.types import (
     ListResourceTemplatesRequest,
     ListToolsRequest,
     TextContent,
+    Tool,
 )
 
 from .tools import create_issue, get_issues
@@ -39,12 +40,12 @@ async def list_resource_templates():
 
 
 @server.list_tools()
-async def list_tools() -> list[types.Tool]:
+async def list_tools() -> list[Tool]:
     return [
-        {
-            "name": "get_issues",
-            "description": "Get list of issues from a GitHub repository",
-            "inputSchema": {
+        Tool(
+            name="get_issues",
+            description="Get list of issues from a GitHub repository",
+            inputSchema={
                 "type": "object",
                 "properties": {
                     "repo": {
@@ -54,11 +55,11 @@ async def list_tools() -> list[types.Tool]:
                 },
                 "required": ["repo"],
             },
-        },
-        {
-            "name": "create_issue",
-            "description": "Create a new issue in a GitHub repository",
-            "inputSchema": {
+        ),
+        Tool(
+            name="create_issue",
+            description="Create a new issue in a GitHub repository",
+            inputSchema={
                 "type": "object",
                 "properties": {
                     "repo": {
@@ -76,7 +77,7 @@ async def list_tools() -> list[types.Tool]:
                 },
                 "required": ["repo", "title"],
             },
-        },
+        ),
     ]
 
 
@@ -88,7 +89,7 @@ async def handle_call_tool(name: str, arguments: dict | None) -> list[TextConten
         arguments = {}
 
     try:
-        tool_handlers: Dict[str, callable] = {
+        tool_handlers: Dict[str, Callable[[dict], Awaitable[Any]]] = {
             "get_issues": get_issues,
             "create_issue": create_issue,
         }
