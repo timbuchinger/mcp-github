@@ -1,5 +1,7 @@
 # GitHub MCP Server
 
+[![smithery badge](https://smithery.ai/badge/@timbuchinger/mcp-github)](https://smithery.ai/server/@timbuchinger/mcp-github)
+
 A Model Context Protocol (MCP) server implementation for interacting with GitHub issues through Cline.
 
 ## Features
@@ -11,6 +13,15 @@ A Model Context Protocol (MCP) server implementation for interacting with GitHub
 
 ## Installation
 
+### Installing via Smithery
+
+To install GitHub MCP Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@timbuchinger/mcp-github):
+
+```bash
+npx -y @smithery/cli install @timbuchinger/mcp-github --client claude
+```
+
+### Manual Installation
 1. Clone the repository:
 ```bash
 git clone https://github.com/timbuchinger/mcp-github.git
@@ -93,3 +104,4 @@ black .
 
 # Type checking
 mypy .
+```
