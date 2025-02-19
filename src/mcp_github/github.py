@@ -25,11 +25,15 @@ class GitHubClient:
         """
         self.api = Github(token)
 
-    def get_issues(self, repo: str) -> List[Issue]:
+    def get_issues(
+        self, repo: str, state: str = "open", query: Optional[str] = None
+    ) -> List[Issue]:
         """Get list of issues from a repository.
 
         Args:
             repo: Repository name in format "owner/repo"
+            state: State of issues to retrieve ("open", "closed", or "all")
+            query: Optional search query to filter issues
 
         Returns:
             List of GitHub issues
@@ -39,7 +43,10 @@ class GitHubClient:
         """
         try:
             repository = self.api.get_repo(repo)
-            return list(repository.get_issues(state="open"))
+            if query:
+                query_str = f"repo:{repo} {query} state:{state}"
+                return list(self.api.search_issues(query_str))
+            return list(repository.get_issues(state=state))
         except GithubException as e:
             raise GitHubError(str(e.data.get("message", "Unknown error")), e.status)
 
