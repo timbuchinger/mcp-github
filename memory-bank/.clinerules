@@ -1,0 +1,104 @@
+# Cline Project Rules
+
+## Project Overview
+This is a Python MCP server implementation for GitHub issue management through Cline.
+
+## Code Organization
+- Python files use snake_case
+- Class names use PascalCase
+- Constants use UPPER_SNAKE_CASE
+- Type hints required for all functions
+- Docstrings following Google style
+
+## File Structure
+```
+src/mcp_github/
+├── server.py       # MCP server implementation
+├── github.py       # GitHub API client
+├── commands/       # Command pattern implementations
+└── tools/         # MCP tool definitions
+```
+
+## Project Patterns
+1. Use Poetry for dependency management
+2. Command pattern for GitHub operations
+3. Factory pattern for tool creation
+4. Strategy pattern for authentication
+
+## Development Workflow
+1. Test-driven development approach
+2. Black for code formatting
+3. MyPy for type checking
+4. Pytest for testing
+
+## Documentation Style
+- Google-style docstrings
+- Clear function descriptions
+- Type hints for parameters
+- Return value documentation
+- Error cases documented
+
+Example:
+```python
+def create_issue(title: str, body: str) -> Issue:
+    """Creates a new GitHub issue.
+
+    Args:
+        title: The issue title
+        body: The issue description
+
+    Returns:
+        Issue: The created GitHub issue
+
+    Raises:
+        AuthenticationError: If authentication fails
+        RateLimitError: If GitHub rate limit exceeded
+    """
+    pass
+```
+
+## Error Handling
+- Custom exception hierarchy
+- Descriptive error messages
+- Proper error translation
+- Rate limit consideration
+
+## Testing Approach
+- Unit tests required
+- Integration tests for API
+- Mock responses for testing
+- Error case coverage
+
+## Git Practices
+- Feature branches
+- Descriptive commit messages
+- Max 72 chars for commit title
+- Reference issues in commits
+
+## Critical Paths
+1. Authentication setup
+2. GitHub API interaction
+3. Rate limit handling
+4. Error management
+
+## Tool Usage Patterns
+- Separate read/write tools
+- Consistent response format
+- Clear error reporting
+- Rate limit awareness
+
+## Project Intelligence
+1. GitHub API considerations
+   - Rate limits are per-hour
+   - Authentication required
+   - PAT scope restrictions
+
+2. MCP Protocol notes
+   - Tools for operations
+   - Resources for data
+   - Strict response format
+
+3. Performance considerations
+   - Cache API responses
+   - Monitor rate limits
+   - Async where beneficial
