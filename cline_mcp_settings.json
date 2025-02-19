@@ -1,0 +1,21 @@
+{
+  "mcpServers": {
+    "github": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/fully/qualified/path/to/mcp-github/",
+        "run",
+        "python",
+        "-m",
+        "mcp_github.server"
+      ],
+      "env": {
+        "GITHUB_TOKEN": "YOUR_GITHUB_TOKEN",
+        "LOG_LEVEL": "INFO"
+      },
+      "disabled": true,
+      "autoApprove": []
+    }
+  }
+}

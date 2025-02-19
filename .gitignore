@@ -35,3 +35,4 @@ wheels/
 
 # Logs
 *.log
+.pytest_cache
