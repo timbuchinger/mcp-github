@@ -36,14 +36,14 @@ async def test_list_tools():
     assert len(tools) == 2  # get_issues and create_issue
 
     # Verify get_issues tool
-    get_issues = next(t for t in tools if t["name"] == "get_issues")
-    assert get_issues["description"] == "Get list of issues from a GitHub repository"
-    assert get_issues["inputSchema"]["required"] == ["repo"]
+    get_issues = next(t for t in tools if t.name == "get_issues")
+    assert get_issues.description == "Get list of issues from a GitHub repository"
+    assert get_issues.inputSchema["required"] == ["repo"]
 
     # Verify create_issue tool
-    create_issue = next(t for t in tools if t["name"] == "create_issue")
-    assert create_issue["description"] == "Create a new issue in a GitHub repository"
-    assert set(create_issue["inputSchema"]["required"]) == {"repo", "title"}
+    create_issue = next(t for t in tools if t.name == "create_issue")
+    assert create_issue.description == "Create a new issue in a GitHub repository"
+    assert set(create_issue.inputSchema["required"]) == {"repo", "title"}
 
 
 @pytest.mark.asyncio
